@@ -1,0 +1,45 @@
+@import url("https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.12/latin.css");
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #fafafa;
+  color: #000000;
+  padding: var(--margin);
+  font-size: var(--body-font-size);
+}
+
+:root {
+  --margin: 3rem;
+  --golden-ratio: 1.618;
+  --smaller-margin: calc(var(--margin) / var(--golden-ratio));
+  --title-font-size: 2.7rem;
+  --subtitle-font-size: calc((var(--title-font-size) / (var(--golden-ratio))));
+  --body-font-size: calc((var(--subtitle-font-size) / (var(--golden-ratio))));
+  --yellow: #f0ca00;
+  --red: #f30100;
+  --blue: #00c1aa;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: calc(var(--margin) / var(--golden-ratio));
+}
+
+#title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#title {
+  font-size: var(--title-font-size);
+}
+
+#subtitle {
+  font-size: var(--subtitle-font-size);
+}
