@@ -54,6 +54,17 @@ export function calculateIsoscelesTrianglePoints(x, y, size) {
   ];
 }
 
+export function processDataForGraph2(showData) {
+  // Sort the show's data in descending order by rating
+  showData.sort((a, b) => b.rating - a.rating);
+
+  // Calculate the number of entries for the top 25%
+  var top25PercentCount = Math.ceil(showData.length * 0.25);
+
+  // Return the top 25% of entries
+  return showData.slice(0, top25PercentCount);
+}
+
 // creating an arrow hed
 // svg
 // .append("defs")

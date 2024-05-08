@@ -31,3 +31,40 @@ export const bodyFontBold = rootStyle
 export const transitionDuration = rootStyle
   .getPropertyValue("--transition-duration")
   .trim();
+
+export const bigBangTheoryMainCharacters = [
+  "Sheldon",
+  "Leonard",
+  "Penny",
+  "Bernadette",
+  "Amy",
+  "Raj",
+  "Howard",
+];
+
+export const brooklynNineNineMainCharacters = [
+  "Jake",
+  "Holt",
+  "Amy",
+  "Terry",
+  "Rosa",
+  "Charles",
+  "Hitchcock",
+  "Scully",
+  "Gina",
+];
+
+export const modernFamilyCharacters = [
+  "Phil",
+  "Claire",
+  "Alex",
+  "Luke",
+  "Haley",
+  "Cam",
+  "Mitch",
+  "Lily",
+  "Gloria",
+  "Jay",
+  "Manny",
+  "Joe",
+];

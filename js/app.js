@@ -5,6 +5,7 @@ import {
   formatBigBangTheoryData,
 } from "./dataCleaning.js";
 import { drawChart1 } from "./chart1.js";
+import { processDataForGraph2 } from "./util.js";
 
 const intro = d3.select("#intro");
 const main = d3.select("#main");
@@ -35,3 +36,16 @@ const finalData = formattedBrooklynNineNine.concat(
 
 // layered heat map or chart 1
 drawChart1(finalData);
+
+// Assuming each formatted show data is an array
+var graph2Data = [
+  formattedBrooklynNineNine,
+  formattedModernFamily,
+  formattedBigBangTheory,
+];
+
+for (let i = 0; i < graph2Data.length; i++) {
+  graph2Data[i] = processDataForGraph2(graph2Data[i]);
+}
+
+console.log(graph2Data);
