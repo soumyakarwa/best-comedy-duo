@@ -5,16 +5,15 @@ import {
   convertBrooklynNineNineDateFormat,
 } from "./util.js";
 
+/**
+ *
+ * @param {*} data
+ * @returns
+ */
 export function formatBrooklynNineNineData(data) {
   return data.map((item) => {
-    // console.log("Brooklyn Nine Nine ", item.Airdate);
-    // console.log(
-    //   "Brooklyn Nine Nine ",
-    //   convertBrooklynNineNineDateFormat(item.Airdate)
-    // );
-
     return {
-      show: "Brooklyn Nine Nine",
+      show: "Brooklyn Nine-Nine",
       season: item.Season,
       episode: item.Episode,
       title: item.Title,
@@ -26,15 +25,14 @@ export function formatBrooklynNineNineData(data) {
   });
 }
 
+/**
+ *
+ * @param {*} data
+ * @returns
+ */
 export function formatModernFamilyData(data) {
   return data.map((item) => {
     var seasonEpisodeSplit = item["Season-Episode"].split("-");
-
-    // const s = seasonEpisodeSplit[0][0]; // 'S'
-    // const number = seasonEpisodeSplit[0].substring(1); // '1' (gets the rest of the string after 'S')
-
-    // console.log(s, number);
-
     return {
       show: "Modern Family",
       season: seasonEpisodeSplit[0].substring(1),
@@ -48,14 +46,13 @@ export function formatModernFamilyData(data) {
   });
 }
 
+/**
+ *
+ * @param {*} data
+ * @returns
+ */
 export function formatBigBangTheoryData(data) {
   return data.map((item) => {
-    // console.log("The Big Bang Theory ", item.original_air_date);
-    // console.log(
-    //   "The Big Bang Theory ",
-    //   convertBigBangTheoryDateFormat(item.original_air_date)
-    // );
-
     return {
       show: "The Big Bang Theory",
       season: item.season,

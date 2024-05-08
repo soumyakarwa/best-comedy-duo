@@ -2,9 +2,9 @@
 @import url("https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.12/latin.css");
 
 body {
-  font-family: "Inter", sans-serif;
-  background: #fafafa;
-  color: #000000;
+  font-family: var(--body-font);
+  background: var(--white);
+  color: var(--black);
   padding: var(--margin);
   font-size: var(--body-font-size);
 }
@@ -16,9 +16,15 @@ body {
   --title-font-size: 2.7rem;
   --subtitle-font-size: calc((var(--title-font-size) / (var(--golden-ratio))));
   --body-font-size: calc((var(--subtitle-font-size) / (var(--golden-ratio))));
+  --labelFontSize: 0.7rem;
   --yellow: #f0ca00;
   --red: #f30100;
   --blue: #00c1aa;
+  --white: #fafafa;
+  --black: #2d2d2a;
+  --body-font: "Fira-Sans";
+  --body-font-bold: "Fira-Sans-Bold";
+  --transition-duration: 500;
 }
 
 #main {
@@ -42,4 +48,27 @@ body {
 
 #subtitle {
   font-size: var(--subtitle-font-size);
+}
+
+#tooltip {
+  position: absolute;
+  text-align: left;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  font-size: var(--labelFontSize);
+  background: var(--white);
+  pointer-events: none;
+  opacity: 0.9;
+  color: var(--black);
+}
+
+@font-face {
+  font-family: "Fira-Sans";
+  src: url("/assets/Fira_Sans/FiraSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Fira-Sans-Bold";
+  src: url("/assets/Fira_Sans/FiraSans-Bold.ttf");
 }

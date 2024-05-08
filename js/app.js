@@ -4,8 +4,7 @@ import {
   formatModernFamilyData,
   formatBigBangTheoryData,
 } from "./dataCleaning.js";
-import { drawHeatmap, drawLayeredChart } from "./charts.js";
-import * as Constants from "./constants.js";
+import { drawChart1 } from "./chart1.js";
 
 const intro = d3.select("#intro");
 const main = d3.select("#main");
@@ -29,19 +28,10 @@ const formattedBigBangTheory = formatBigBangTheoryData(bigBangTheory);
 const formattedModernFamily = formatModernFamilyData(modernFamily);
 
 // Concatenate all data into a single array
-var finalData = formattedBrooklynNineNine.concat(
+const finalData = formattedBrooklynNineNine.concat(
   formattedBigBangTheory,
   formattedModernFamily
 );
 
-// drawHeatmap(
-//   formattedBrooklynNineNine,
-//   formattedModernFamily,
-//   formattedBigBangTheory
-// );
-
-drawLayeredChart(finalData);
-
-console.log(finalData); // .forEach((d) => console.log(d.show, d.season, d.episode)));
-
-// any additional steps for drawing into charts goes here
+// layered heat map or chart 1
+drawChart1(finalData);

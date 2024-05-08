@@ -53,3 +53,19 @@ export function calculateIsoscelesTrianglePoints(x, y, size) {
     { x: x + base / 2, y: y + height / 2 }, // Bottom right vertex
   ];
 }
+
+// creating an arrow hed
+// svg
+// .append("defs")
+// .append("marker")
+// .attr("id", "arrowhead")
+// .attr("viewBox", "-0 -5 10 10") // Coordinates of the viewBox create a bounding box for the path
+// .attr("refX", 5) // x position of the reference point of the marker (tip of the arrow)
+// .attr("refY", 0)
+// .attr("orient", "auto")
+// .attr("markerWidth", 6)
+// .attr("markerHeight", 6)
+// .attr("xoverflow", "visible")
+// .append("svg:path")
+// .attr("d", "M 0,-5 L 10 ,0 L 0,5") // A basic triangle
+// .attr("fill", "#333");
