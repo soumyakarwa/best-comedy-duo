@@ -39,6 +39,7 @@ function donutChartHelper(group, radius, data, c, title) {
   }));
   const labelRadius = radius;
   dataArray.sort((a, b) => b.value - a.value);
+  const total = d3.sum(dataArray, (d) => d.value);
   const interpolate = d3.interpolateHslLong(c, Constants.whiteColor);
 
   const colors = dataArray.map((_, i) =>
@@ -57,7 +58,7 @@ function donutChartHelper(group, radius, data, c, title) {
     .outerRadius(radius * 1);
   const outerArc = d3.arc().innerRadius(labelRadius).outerRadius(labelRadius);
 
-  group
+  const arcs = group
     .selectAll("allSlices")
     .data(data_ready)
     .enter()
@@ -67,10 +68,10 @@ function donutChartHelper(group, radius, data, c, title) {
     .attr("stroke", Constants.whiteColor)
     .style("stroke-width", "2px");
 
-  // Add labels
-  const slices = group.selectAll("allSlices").data(data_ready).enter();
-
-  slices
+  const labels = group
+    .selectAll("allLabels")
+    .data(data_ready)
+    .enter()
     .append("text")
     .attr("transform", function (d) {
       const pos = outerArc.centroid(d);
@@ -84,7 +85,10 @@ function donutChartHelper(group, radius, data, c, title) {
     .attr("fill", Constants.blackColor)
     .style("font-size", Constants.labelFontSize);
 
-  slices
+  const polylines = group
+    .selectAll("allPolylines")
+    .data(data_ready)
+    .enter()
     .append("polyline")
     .attr("stroke", Constants.blackColor)
     .style("fill", "none")
@@ -94,6 +98,53 @@ function donutChartHelper(group, radius, data, c, title) {
       const pos2 = outerArc.centroid(d);
       pos2[0] = labelRadius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
       return [arc.centroid(d), outerArc.centroid(d), pos2];
+    });
+
+  arcs
+    .on("mouseover", function (event, d) {
+      const percent = ((d.data.value / total) * 100).toFixed(2) + "%";
+      group
+        .selectAll("path")
+        .filter((p) => p !== d)
+        .transition()
+        .duration(200)
+        .attr("opacity", 0.3);
+
+      labels
+        .filter((p) => p !== d)
+        .transition()
+        .duration(200)
+        .attr("opacity", 0);
+
+      polylines
+        .filter((p) => p !== d)
+        .transition()
+        .duration(200)
+        .attr("opacity", 0);
+
+      // labels.filter((p) => p === d).text(d.data.key + `: ${percent}`); // Updating label text with percentage
+      group
+        .append("text")
+        .attr("class", "percentage-label")
+        .attr("text-anchor", "middle")
+        .attr("dy", "-1.2em")
+        .text(percent)
+        .attr("fill", Constants.blackColor)
+        .style("font-size", Constants.labelFontSize)
+        .style("font-weight", "bold");
+    })
+    .on("mouseout", function (event, d) {
+      group.selectAll("path").transition().duration(200).attr("opacity", 1);
+
+      labels
+        .transition()
+        .duration(200)
+        .attr("opacity", 1)
+        .text((d) => d.data.key); // Restore original label text
+
+      polylines.transition().duration(200).attr("opacity", 1);
+
+      group.selectAll(".percentage-label").remove();
     });
 
   function midAngle(d) {
