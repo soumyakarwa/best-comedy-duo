@@ -34,43 +34,38 @@ export const transitionDuration = rootStyle
   .getPropertyValue("--transition-duration")
   .trim();
 
-export const bigBangTheoryMainCharacters = [
-  "sheldon",
-  "leonard",
-  "penny",
-  "bernadette",
-  "amy",
-  "raj",
-  "koothrapali",
-  "howard",
-];
+export const modernFamilyCharacters = {
+  Phil: 0,
+  Claire: 0,
+  Alex: 0,
+  Luke: 0,
+  Haley: 0,
+  Cameron: 0,
+  Mitchell: 0,
+  Lily: 0,
+  Jay: 0,
+  Gloria: 0,
+  Manny: 0,
+};
 
-export const brooklynNineNineMainCharacters = [
-  "jake",
-  "holt",
-  "amy",
-  "terry",
-  "rosa",
-  "charles",
-  "hitchcock",
-  "scully",
-  "gina",
-  "squad",
-  "nine-nine",
-];
+export const brooklynNineNineCharacters = {
+  Jake: 0,
+  Rosa: 0,
+  Hitchcock: 0,
+  Holt: 0,
+  Amy: 0,
+  Terry: 0,
+  Gina: 0,
+  Charles: 0,
+  Scully: 0,
+};
 
-export const modernFamilyCharacters = [
-  "phil",
-  "claire",
-  "alex",
-  "luke",
-  "haley",
-  "cameron",
-  "mitchell",
-  "lily",
-  "gloria",
-  "jay",
-  "manny",
-  "joe",
-  "family",
-];
+export const bigBangTheoryCharacters = {
+  Sheldon: 0,
+  Leonard: 0,
+  Howard: 0,
+  Raj: 0,
+  Amy: 0,
+  Bernadette: 0,
+  Penny: 0,
+};

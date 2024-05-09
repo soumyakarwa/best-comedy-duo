@@ -32,7 +32,6 @@ export function drawChart2(data, c) {
 }
 
 function donutChartHelper(group, radius, data, c, title) {
-  console.log(group);
   const dataArray = Object.entries(data).map(([key, value]) => ({
     key,
     value,
@@ -58,6 +57,7 @@ function donutChartHelper(group, radius, data, c, title) {
     .outerRadius(radius * 1);
   const outerArc = d3.arc().innerRadius(labelRadius).outerRadius(labelRadius);
 
+  // creating donut sections
   const arcs = group
     .selectAll("allSlices")
     .data(data_ready)
@@ -68,6 +68,7 @@ function donutChartHelper(group, radius, data, c, title) {
     .attr("stroke", Constants.whiteColor)
     .style("stroke-width", "2px");
 
+  // adding character labels
   const labels = group
     .selectAll("allLabels")
     .data(data_ready)
@@ -85,6 +86,7 @@ function donutChartHelper(group, radius, data, c, title) {
     .attr("fill", Constants.blackColor)
     .style("font-size", Constants.labelFontSize);
 
+  // adding lines leading to labels
   const polylines = group
     .selectAll("allPolylines")
     .data(data_ready)
@@ -100,29 +102,30 @@ function donutChartHelper(group, radius, data, c, title) {
       return [arc.centroid(d), outerArc.centroid(d), pos2];
     });
 
+  // creating mouse hover interaction
   arcs
     .on("mouseover", function (event, d) {
-      const percent = ((d.data.value / total) * 100).toFixed(2) + "%";
+      const percent = ((d.data.value / total) * 100).toFixed(1) + "%";
+      // fading out arcs that are not hovered upon
       group
         .selectAll("path")
         .filter((p) => p !== d)
         .transition()
-        .duration(200)
+        .duration(Constants.transitionDuration / 2)
         .attr("opacity", 0.3);
 
       labels
         .filter((p) => p !== d)
         .transition()
-        .duration(200)
+        .duration(Constants.transitionDuration / 2)
         .attr("opacity", 0);
 
       polylines
         .filter((p) => p !== d)
         .transition()
-        .duration(200)
+        .duration(Constants.transitionDuration / 2)
         .attr("opacity", 0);
 
-      // labels.filter((p) => p === d).text(d.data.key + `: ${percent}`); // Updating label text with percentage
       group
         .append("text")
         .attr("class", "percentage-label")
@@ -142,7 +145,10 @@ function donutChartHelper(group, radius, data, c, title) {
         .attr("opacity", 1)
         .text((d) => d.data.key); // Restore original label text
 
-      polylines.transition().duration(200).attr("opacity", 1);
+      polylines
+        .transition()
+        .duration(Constants.transitionDuration / 2)
+        .attr("opacity", 1);
 
       group.selectAll(".percentage-label").remove();
     });

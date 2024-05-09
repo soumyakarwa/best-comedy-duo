@@ -6,11 +6,20 @@ import {
   bigBangTheoryChart2Data,
   modernFamilyChart2Data,
   brooklynNineNineChart2Data,
+  modernFamilyChart3Data,
+  bigBangTheoryChart3Data,
+  brooklynNineNineChart3Data,
+  graph3ConsolidatedData,
 } from "./dataCleaning.js";
 import { drawChart1 } from "./chart1.js";
-import { processDataForGraph2 } from "./util.js";
+import {
+  getTopCharacter,
+  processDataForGraph2,
+  writeNameProperly,
+} from "./util.js";
 import { drawChart2 } from "./chart2.js";
 import * as Constants from "./constants.js";
+import { drawChart3 } from "./chart3.js";
 
 const intro = d3.select("#intro");
 const main = d3.select("#main");
@@ -39,8 +48,12 @@ const finalData = formattedBrooklynNineNine.concat(
   formattedModernFamily
 );
 
+/////////////////////////////////////////////////////////////////////////////
+
 // CHART 1
 drawChart1(finalData);
+
+/////////////////////////////////////////////////////////////////////////////
 
 // Assuming each formatted show data is an array
 var graph2Data = [
@@ -65,3 +78,36 @@ characterCounts.bigBangTheory = bigBangTheoryChart2Data(graph2Data);
 
 // CHART 2
 drawChart2(characterCounts);
+
+/////////////////////////////////////////////////////////////////////////////
+
+const topCharacters = {
+  brooklynNineNine: getTopCharacter(characterCounts.brooklynNineNine),
+  modernFamily: getTopCharacter(characterCounts.modernFamily),
+  bigBangTheory: getTopCharacter(characterCounts.bigBangTheory),
+};
+
+var popularCharacterPairs = {
+  brooklynNineNine: null,
+  modernFamily: null,
+  bigBangTheory: null,
+};
+
+popularCharacterPairs.brooklynNineNine = brooklynNineNineChart3Data(
+  graph2Data[0],
+  topCharacters.brooklynNineNine
+);
+
+popularCharacterPairs.modernFamily = modernFamilyChart3Data(
+  graph2Data[1],
+  topCharacters.modernFamily
+);
+
+popularCharacterPairs.bigBangTheory = bigBangTheoryChart3Data(
+  graph2Data[2],
+  topCharacters.bigBangTheory
+);
+
+const graph3Data = graph3ConsolidatedData(popularCharacterPairs, topCharacters);
+
+drawChart3(graph3Data.nodes, graph3Data.links);

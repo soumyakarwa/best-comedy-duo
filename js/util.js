@@ -65,6 +65,24 @@ export function processDataForGraph2(showData) {
   return showData.slice(0, top25PercentCount);
 }
 
+export function getTopCharacter(showData) {
+  const dataArray = Object.entries(showData).map(([key, value]) => ({
+    key,
+    value,
+  }));
+  dataArray.sort((a, b) => b.value - a.value);
+  return dataArray[0];
+}
+
+export function writeNameProperly(name) {
+  if (!name || name.length === 0) return ""; // Return empty if the input is empty or not provided
+
+  const firstLetter = name[0].toUpperCase(); // Capitalize the first letter
+  const restOfName = name.slice(1).toLowerCase(); // Ensure the rest of the name is in lowercase
+
+  return firstLetter + restOfName; // Concatenate and return the properly formatted name
+}
+
 // creating an arrow hed
 // svg
 // .append("defs")
