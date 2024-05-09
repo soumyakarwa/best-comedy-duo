@@ -4,10 +4,12 @@ const rootStyle = getComputedStyle(document.documentElement);
 
 // Access CSS variables
 export const yellowColor = rootStyle.getPropertyValue("--yellow").trim();
-export const redColor = rootStyle.getPropertyValue("--red").trim();
-export const blueColor = rootStyle.getPropertyValue("--blue").trim();
+export const greenColor = rootStyle.getPropertyValue("--red").trim();
+export const redColor = rootStyle.getPropertyValue("--blue").trim();
 export const whiteColor = rootStyle.getPropertyValue("--white").trim();
 export const blackColor = rootStyle.getPropertyValue("--black").trim();
+export const maxWidth = rootStyle.getPropertyValue("--max-width").trim();
+export const chartMargin = rootStyle.getPropertyValue("--chart-margin").trim();
 
 export const margin = rootStyle.getPropertyValue("--margin").trim();
 export const smallerMargin = rootStyle
@@ -18,9 +20,9 @@ export const bodyFontSize = "1rem";
 export const labelFontSize = "0.7rem";
 
 export const legendData = [
-  { color: yellowColor, text: "Brooklyn Nine-Nine" },
-  { color: blueColor, text: "Modern Family" },
-  { color: redColor, text: "The Big Bang Theory" },
+  { color: yellowColor, text: "Brooklyn Nine-Nine", id: "brooklynNineNine" },
+  { color: redColor, text: "Modern Family", id: "modernFamily" },
+  { color: greenColor, text: "The Big Bang Theory", id: "bigBangTheory" },
 ];
 
 export const bodyFont = rootStyle.getPropertyValue("--body-font").trim();
@@ -33,38 +35,42 @@ export const transitionDuration = rootStyle
   .trim();
 
 export const bigBangTheoryMainCharacters = [
-  "Sheldon",
-  "Leonard",
-  "Penny",
-  "Bernadette",
-  "Amy",
-  "Raj",
-  "Howard",
+  "sheldon",
+  "leonard",
+  "penny",
+  "bernadette",
+  "amy",
+  "raj",
+  "koothrapali",
+  "howard",
 ];
 
 export const brooklynNineNineMainCharacters = [
-  "Jake",
-  "Holt",
-  "Amy",
-  "Terry",
-  "Rosa",
-  "Charles",
-  "Hitchcock",
-  "Scully",
-  "Gina",
+  "jake",
+  "holt",
+  "amy",
+  "terry",
+  "rosa",
+  "charles",
+  "hitchcock",
+  "scully",
+  "gina",
+  "squad",
+  "nine-nine",
 ];
 
 export const modernFamilyCharacters = [
-  "Phil",
-  "Claire",
-  "Alex",
-  "Luke",
-  "Haley",
-  "Cam",
-  "Mitch",
-  "Lily",
-  "Gloria",
-  "Jay",
-  "Manny",
-  "Joe",
+  "phil",
+  "claire",
+  "alex",
+  "luke",
+  "haley",
+  "cameron",
+  "mitchell",
+  "lily",
+  "gloria",
+  "jay",
+  "manny",
+  "joe",
+  "family",
 ];

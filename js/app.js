@@ -3,9 +3,14 @@ import {
   formatBrooklynNineNineData,
   formatModernFamilyData,
   formatBigBangTheoryData,
+  bigBangTheoryChart2Data,
+  modernFamilyChart2Data,
+  brooklynNineNineChart2Data,
 } from "./dataCleaning.js";
 import { drawChart1 } from "./chart1.js";
 import { processDataForGraph2 } from "./util.js";
+import { drawChart2 } from "./chart2.js";
+import * as Constants from "./constants.js";
 
 const intro = d3.select("#intro");
 const main = d3.select("#main");
@@ -34,7 +39,7 @@ const finalData = formattedBrooklynNineNine.concat(
   formattedModernFamily
 );
 
-// layered heat map or chart 1
+// CHART 1
 drawChart1(finalData);
 
 // Assuming each formatted show data is an array
@@ -48,4 +53,15 @@ for (let i = 0; i < graph2Data.length; i++) {
   graph2Data[i] = processDataForGraph2(graph2Data[i]);
 }
 
-console.log(graph2Data);
+var characterCounts = {
+  brooklynNineNine: null,
+  modernFamily: null,
+  bigBangTheory: null,
+};
+
+characterCounts.brooklynNineNine = brooklynNineNineChart2Data(graph2Data);
+characterCounts.modernFamily = modernFamilyChart2Data(graph2Data);
+characterCounts.bigBangTheory = bigBangTheoryChart2Data(graph2Data);
+
+// CHART 2
+drawChart2(characterCounts);

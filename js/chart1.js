@@ -12,7 +12,7 @@ export async function drawChart1(data) {
   const height = 750;
   const legendHeight = 70;
   const chartWidth = width - margin.right - margin.left;
-  const chartHeight = height - legendHeight - margin.top - margin.bottom;
+  const chartHeight = height - legendHeight - margin.top;
   const bbtDataPt = data.filter(
     (d) =>
       d.show === "The Big Bang Theory" && d.season === "12" && d.episode === "1"
