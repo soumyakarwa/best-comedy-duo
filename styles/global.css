@@ -7,6 +7,7 @@ body {
   color: var(--black);
   padding: var(--margin);
   font-size: var(--body-font-size);
+  overflow: auto;
 }
 
 :root {
@@ -35,8 +36,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: var(--smaller-margin);
+  gap: var(--margin);
   width: calc(var(--max-width)- var(--smaller-margin));
+  /* height: 100vh; */
   border: 1px solid black;
 }
 
