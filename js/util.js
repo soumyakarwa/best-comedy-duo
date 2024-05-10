@@ -83,6 +83,10 @@ export function writeNameProperly(name) {
   return firstLetter + restOfName; // Concatenate and return the properly formatted name
 }
 
+export function findMaxKey(data) {
+  return Object.keys(data).reduce((a, b) => (data[a] > data[b] ? a : b));
+}
+
 // creating an arrow hed
 // svg
 // .append("defs")

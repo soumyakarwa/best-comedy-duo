@@ -13,6 +13,7 @@ import {
 } from "./dataCleaning.js";
 import { drawChart1 } from "./chart1.js";
 import {
+  findMaxKey,
   getTopCharacter,
   processDataForGraph2,
   writeNameProperly,
@@ -22,6 +23,7 @@ import * as Constants from "./constants.js";
 import { drawChart3 } from "./chart3.js";
 import { fetchAndFormatData } from "./dataProcessing.js";
 import { setupChartDrawing } from "./setUpChartDrawing.js";
+import { drawChart4 } from "./chart4.js";
 
 async function loadData(url) {
   const response = await d3.csv(url);
@@ -42,6 +44,8 @@ const finalData = formattedBrooklynNineNine.concat(
   formattedBigBangTheory,
   formattedModernFamily
 );
+
+console.log(finalData);
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -88,24 +92,56 @@ var popularCharacterPairs = {
   bigBangTheory: null,
 };
 
-popularCharacterPairs.brooklynNineNine = brooklynNineNineChart3Data(
-  graph2Data[0],
-  topCharacters.brooklynNineNine
-);
+var mostPopularCharacterPairs = {
+  brooklynNineNine: null,
+  modernFamily: null,
+  bigBangTheory: null,
+};
 
-popularCharacterPairs.modernFamily = modernFamilyChart3Data(
-  graph2Data[1],
-  topCharacters.modernFamily
-);
+[
+  popularCharacterPairs.brooklynNineNine,
+  mostPopularCharacterPairs.brooklynNineNine,
+] = brooklynNineNineChart3Data(graph2Data[0], topCharacters.brooklynNineNine);
 
-popularCharacterPairs.bigBangTheory = bigBangTheoryChart3Data(
-  graph2Data[2],
-  topCharacters.bigBangTheory
-);
+[popularCharacterPairs.modernFamily, mostPopularCharacterPairs.modernFamily] =
+  modernFamilyChart3Data(graph2Data[1], topCharacters.modernFamily);
+
+[popularCharacterPairs.bigBangTheory, mostPopularCharacterPairs.bigBangTheory] =
+  bigBangTheoryChart3Data(graph2Data[2], topCharacters.bigBangTheory);
 
 const graph3Data = graph3ConsolidatedData(popularCharacterPairs, topCharacters);
 
 drawChart3(graph3Data.nodes, graph3Data.links);
+
+/////////////////////////////////////////////////////////////////////////////
+
+console.log(topCharacters);
+
+const val1 = findMaxKey(popularCharacterPairs.brooklynNineNine);
+const val2 = findMaxKey(popularCharacterPairs.modernFamily);
+const val3 = findMaxKey(popularCharacterPairs.bigBangTheory);
+
+const graph4Data = {
+  brooklynNineNine: {
+    [val1]:
+      mostPopularCharacterPairs.brooklynNineNine[val1].totalRating /
+      mostPopularCharacterPairs.brooklynNineNine[val1].count,
+  },
+  modernFamily: {
+    [val2]:
+      mostPopularCharacterPairs.modernFamily[val2].totalRating /
+      mostPopularCharacterPairs.modernFamily[val2].count,
+  },
+  bigBangTheory: {
+    [val3]:
+      mostPopularCharacterPairs.bigBangTheory[val3].totalRating /
+      mostPopularCharacterPairs.bigBangTheory[val3].count,
+  },
+};
+
+console.log(graph4Data);
+
+drawChart4(graph4Data, topCharacters);
 
 // async function initialize() {
 //   const graph2Data = await fetchAndFormatData();

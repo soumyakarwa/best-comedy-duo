@@ -204,8 +204,22 @@ export function modernFamilyChart3Data(data, topCharacters) {
     {}
   );
 
+  let ratingsData = Object.keys(Constants.modernFamilyCharacters).reduce(
+    (newObj, key) => {
+      if (writeNameProperly(key) !== writeNameProperly(topCharacters.key)) {
+        newObj[key] = {
+          count: 0,
+          totalRating: 0,
+        };
+      }
+      return newObj;
+    },
+    {}
+  );
+
   data.forEach((episode) => {
     const description = episode.episodeDescription;
+    const rating = episode.rating;
     const sentences = description
       .split(/[.!?;]+/)
       .map((sentence) => sentence.trim()); // Split into sentences and trim whitespace
@@ -218,11 +232,14 @@ export function modernFamilyChart3Data(data, topCharacters) {
           words.includes(writeNameProperly(topCharacters.key))
         ) {
           characterPairs[key]++;
+          ratingsData[key].count++;
+          ratingsData[key].totalRating += parseFloat(rating);
         }
       }
     });
   });
-  return characterPairs;
+
+  return [characterPairs, ratingsData];
 }
 
 /**
@@ -241,8 +258,22 @@ export function bigBangTheoryChart3Data(data, topCharacters) {
     {}
   );
 
+  let ratingsData = Object.keys(Constants.bigBangTheoryCharacters).reduce(
+    (newObj, key) => {
+      if (writeNameProperly(key) !== writeNameProperly(topCharacters.key)) {
+        newObj[key] = {
+          count: 0,
+          totalRating: 0,
+        };
+      }
+      return newObj;
+    },
+    {}
+  );
+
   data.forEach((episode) => {
     const description = episode.episodeDescription;
+    const rating = episode.rating;
     const sentences = description
       .split(/[.!?;]+/)
       .map((sentence) => sentence.trim()); // Split into sentences and trim whitespace
@@ -255,11 +286,13 @@ export function bigBangTheoryChart3Data(data, topCharacters) {
           words.includes(writeNameProperly(topCharacters.key))
         ) {
           characterPairs[key]++;
+          ratingsData[key].count++;
+          ratingsData[key].totalRating += parseFloat(rating);
         }
       }
     });
   });
-  return characterPairs;
+  return [characterPairs, ratingsData];
 }
 
 /**
@@ -278,8 +311,22 @@ export function brooklynNineNineChart3Data(data, topCharacters) {
     {}
   );
 
+  let ratingsData = Object.keys(Constants.brooklynNineNineCharacters).reduce(
+    (newObj, key) => {
+      if (writeNameProperly(key) !== writeNameProperly(topCharacters.key)) {
+        newObj[key] = {
+          count: 0,
+          totalRating: 0,
+        };
+      }
+      return newObj;
+    },
+    {}
+  );
+
   data.forEach((episode) => {
     const description = episode.episodeDescription;
+    const rating = episode.rating;
     const sentences = description
       .split(/[.!?;]+/)
       .map((sentence) => sentence.trim()); // Split into sentences and trim whitespace
@@ -292,11 +339,13 @@ export function brooklynNineNineChart3Data(data, topCharacters) {
           words.includes(writeNameProperly(topCharacters.key))
         ) {
           characterPairs[key]++;
+          ratingsData[key].count++;
+          ratingsData[key].totalRating += parseFloat(rating);
         }
       }
     });
   });
-  return characterPairs;
+  return [characterPairs, ratingsData];
 }
 
 /**

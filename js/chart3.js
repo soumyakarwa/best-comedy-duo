@@ -109,13 +109,16 @@ function networkChartHelper(
     .attr("fill", colorByGroup);
 
   // Append text to each group
-  node
+  const nodeText = node
     .append("text")
-    .attr("dx", -12)
     .attr("dy", ".35em")
     .text((d) => d.id)
     .style("font-size", Constants.labelFontSize)
     .style("fill", Constants.whiteColor);
+
+  const textWidth = nodeText.node().getBBox().width;
+
+  nodeText.attr("dx", -textWidth / 2);
 
   // Update tick function to handle the group
   function ticked() {

@@ -14,13 +14,21 @@
 
     <main id="main">
       <section id="title-section">
-        <div id="title">Title Placeholder</div>
-        <div id="subtitle">Subtitle Placeholder</div>
-      </section>
-      <section id="introduction">
-        <div id="introduction-content">
-          <p>Introduction Content</p>
+        <div id="title">The Most Iconic Comedy Duo of All Time</div>
+        <div class="subtitle">
+          Brooklyn Nine–Nine vs Modern Family vs The Big Bang Theory
         </div>
+      </section>
+      <div class="introduction-content">
+        <p>
+          Explore the comedic genius of "Brooklyn Nine-Nine," "Modern Family,"
+          and "The Big Bang Theory" through our interactive data visualization.
+          Using d3.js, we have analyzed IMDb ratings, episode descriptions, and
+          more to crown the most iconic comedy duo. Dive into the data and find
+          out for yourself!
+        </p>
+      </div>
+      <section id="introduction">
         <div id="introduction-images">
           <img
             src="./assets/shows-02.png"
@@ -35,6 +43,15 @@
           />
         </div>
       </section>
+      <div class="introduction-content">
+        <p>
+          Discover the ratings landscape of "Brooklyn Nine-Nine," "Modern
+          Family," and "The Big Bang Theory" with our interactive layered
+          heatmap. Each square represents an episode, sized by its IMDb rating
+          and color-coded by show. Hover for details or click the legend to
+          filter by show. Explore how each season unfolds, episode by episode!
+        </p>
+      </div>
       <section id="chart-1" class="chart-section">
         <div
           id="tooltip"
@@ -49,17 +66,62 @@
         <!-- use d3 to add elements related to chart-1 here -->
       </section>
       <section id="chart-2" class="chart-section">
-        <div>Content Placeholder</div>
+        <div class="chart-2-content">
+          <div class="subtitle">Most Popular Character?</div>
+          <p>
+            Dive into the popularity of characters from "Brooklyn Nine-Nine,"
+            "Modern Family," and "The Big Bang Theory" with our
+            character-centric donut charts. Each chart reveals who dominates the
+            top 25% rated episodes, with colors deepening for the most popular
+            character. Hover over segments to see the percentage representation
+            of each character in these episodes.
+          </p>
+        </div>
         <div id="donut-charts"></div>
       </section>
+      <div class="introduction-content">
+        <p>
+          Explore the dynamic relationships in "Brooklyn Nine-Nine," "Modern
+          Family," and "The Big Bang Theory" through our interactive network
+          diagrams. Centered around the most popular characters—Jake, Jay, and
+          Sheldon—each diagram visualizes connections with other main
+          characters, emphasizing frequent interactions with larger, closer
+          nodes. Drag and rearrange the nodes for a playful insight into
+          character dynamics!
+        </p>
+      </div>
       <section id="chart-3" class="chart-section">
         <!-- use d3 to add elements related to chart-3 here -->
       </section>
+      <section id="chart-4" class="chart-section">
+        <div class="chart-2-content">
+          <div class="subtitle">Who will take the crown?</div>
+          <p>
+            Celebrate the ultimate comedy duos with our conclusive lollipop
+            chart! Highlighting the most iconic pairings—Jay & Gloria, Jake &
+            Holt, and Sheldon & Penny—this chart simplifies their success to
+            average episode ratings.
+          </p>
+          <p>
+            DID YOU SEE SHELDON AND PENNY COMING? I really thought it would be
+            Sheldon & Leonard. But I guess it doesn't matter with Jake & Holt
+            taking the top spot.
+          </p>
+        </div>
+        <div id="lollipop-charts"></div>
+      </section>
+      <div class="subtitle" id="conclusion">
+        <p>
+          Through innovative visualizations, we've dissected the comedic
+          dynamics of beloved TV shows to crown the ultimate comedy duos. Our
+          analysis reveals not just popular characters but how interactions and
+          episodes resonate with audiences, spotlighting Jake and Holt as the
+          definitive champions. Sorry Amy, guess you lost that one!
+        </p>
+      </div>
     </main>
 
-    <footer id="footer">
-      <!-- add a copyright notice, links to your person website, etc -->
-    </footer>
+    <footer id="footer">Typeface: Fira Sans from Google Fonts</footer>
     <script src="https://unpkg.com/rita"></script>
     <script src="./js/app.js" type="module" async></script>
   </body>
